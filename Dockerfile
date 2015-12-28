@@ -23,6 +23,7 @@ RUN unzip /opt/$WSO2_BUNDLE_NAME.zip -d /opt/ > /opt/${WSO2_FOLDER_NAME}.listfil
 # copy the local assets into place
 COPY assets/repository/conf/datasources/master-datasources.xml /opt/${WSO2_FOLDER_NAME}/repository/conf/datasources/master-datasources.xml
 COPY assets/repository/deployment/server/carbonapps/API_Manager_Analytics.car /opt/${WSO2_FOLDER_NAME}/repository/deployment/server/carbonapps/API_Manager_Analytics.car
+COPY assets/repository/components/lib/mysql-connector-java-5.1.38-bin.jar /opt/${WSO2_FOLDER_NAME}/repository/components/lib/mysql-connector-java-5.1.38-bin.jar
 
 RUN chown -R wso2:wso2 /opt/${WSO2_FOLDER_NAME}
 # remove curl/unzip/wget since we don't need them.
