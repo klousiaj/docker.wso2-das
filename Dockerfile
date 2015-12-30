@@ -14,22 +14,24 @@ ENV WSO2_FOLDER_NAME wso2das
 # expose the necessary ports to run the API Manager and connect to the H2 DB.
 EXPOSE 9163 7714 7614 21004 9446 9766
 
-# move the file onto the container so it can be unzipped
-RUN wget -q -P /opt https://dl.dropboxusercontent.com/s/zo5nqysez4imvoe/wso2das-3.0.0.zip
-
 # unzip the file and move it into place.
-RUN unzip /opt/$WSO2_BUNDLE_NAME.zip -d /opt/ > /opt/${WSO2_FOLDER_NAME}.listfiles; mv /opt/${WSO2_BUNDLE_NAME} /opt/${WSO2_FOLDER_NAME}; rm /opt/${WSO2_BUNDLE_NAME}.zip; rm /opt/${WSO2_FOLDER_NAME}.listfiles
+RUN wget -q -P /opt https://dl.dropboxusercontent.com/s/zo5nqysez4imvoe/wso2das-3.0.0.zip; \
+unzip /opt/$WSO2_BUNDLE_NAME.zip -d /opt/ > /opt/${WSO2_FOLDER_NAME}.listfiles; \
+mv /opt/${WSO2_BUNDLE_NAME} /opt/${WSO2_FOLDER_NAME}; \
+rm /opt/${WSO2_BUNDLE_NAME}.zip; \
+rm /opt/${WSO2_FOLDER_NAME}.listfiles; \
+chown -R wso2:wso2 /opt/${WSO2_FOLDER_NAME};
+
+USER wso2
 
 # copy the local assets into place
 COPY assets/repository/conf/datasources/master-datasources.xml /opt/${WSO2_FOLDER_NAME}/repository/conf/datasources/master-datasources.xml
 COPY assets/repository/deployment/server/carbonapps/API_Manager_Analytics.car /opt/${WSO2_FOLDER_NAME}/repository/deployment/server/carbonapps/API_Manager_Analytics.car
 COPY assets/repository/components/lib/mysql-connector-java-5.1.38-bin.jar /opt/${WSO2_FOLDER_NAME}/repository/components/lib/mysql-connector-java-5.1.38-bin.jar
 
-RUN chown -R wso2:wso2 /opt/${WSO2_FOLDER_NAME}
 # remove curl/unzip/wget since we don't need them.
 RUN yum remove curl wget unzip; yum clean all
 
-USER wso2
 ENV JAVA_HOME /usr/java/default
 
 
