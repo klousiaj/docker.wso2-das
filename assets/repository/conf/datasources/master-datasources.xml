@@ -28,14 +28,14 @@
     </datasource>
 
     <datasource>
-      <name>WSO2AM_STAT_DB</name>
+      <name>WSO2AM_STATS_DB</name>
       <description>The datasource used for setting statistics to API Manager</description>
       <jndiConfig>
         <name>jdbc/WSO2AmStatsDB</name>
       </jndiConfig>
       <definition type="RDBMS">
         <configuration>
-          <url>jdbc:mysql://192.168.99.100:3306/WSO2AM_STAT_DB</url>
+          <url>jdbc:mysql://192.168.99.100:3306/WSO2AM_STATS_DB</url>
           <username>wso2am</username>
           <password>wso2am</password>
           <driverClassName>com.mysql.jdbc.Driver</driverClassName>
