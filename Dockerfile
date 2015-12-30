@@ -12,7 +12,7 @@ ENV WSO2_BUNDLE_NAME wso2das-3.0.0
 ENV WSO2_FOLDER_NAME wso2das
 
 # expose the necessary ports to run the API Manager and connect to the H2 DB.
-EXPOSE 9160 7711 7611 21000 9443 9763
+EXPOSE 9163 7714 7614 21004 9446 9766
 
 # move the file onto the container so it can be unzipped
 RUN wget -q -P /opt https://dl.dropboxusercontent.com/s/zo5nqysez4imvoe/wso2das-3.0.0.zip
@@ -32,8 +32,9 @@ RUN yum remove curl wget unzip; yum clean all
 USER wso2
 ENV JAVA_HOME /usr/java/default
 
+
 # Working Directory in Container
 WORKDIR /opt/${WSO2_FOLDER_NAME}/bin/
 
 # Start WSO2-DAS
-CMD sh ./wso2server.sh
+CMD sh ./wso2server.sh -DportOffset=3
