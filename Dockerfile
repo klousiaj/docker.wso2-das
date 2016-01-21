@@ -23,7 +23,7 @@ rm /opt/${WSO2_FOLDER_NAME}.listfiles; \
 chown -R wso2:wso2 /opt/${WSO2_FOLDER_NAME};
 
 # remove curl/unzip/wget since we don't need them.
-RUN apt-get remove curl wget unzip;
+RUN apt-get -y remove curl wget unzip
 
 USER wso2
 
