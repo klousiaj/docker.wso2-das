@@ -32,7 +32,7 @@ COPY assets/repository/conf/datasources/master-datasources.xml /opt/${WSO2_FOLDE
 COPY assets/repository/deployment/server/carbonapps/API_Manager_Analytics.car /opt/${WSO2_FOLDER_NAME}/repository/deployment/server/carbonapps/API_Manager_Analytics.car
 COPY assets/repository/components/lib/mysql-connector-java-5.1.38-bin.jar /opt/${WSO2_FOLDER_NAME}/repository/components/lib/mysql-connector-java-5.1.38-bin.jar
 
-ENV JAVA_HOME /usr/java/default
+ENV JAVA_HOME /opt/java
 
 # Working Directory in Container
 WORKDIR /opt/${WSO2_FOLDER_NAME}/bin/
